@@ -147,22 +147,22 @@ class DefaultTasksRepository(
     }
 
     override suspend fun activateTask(taskId: String) {
-        wrapEspressoIdlingResource {
-            withContext(ioDispatcher) {
-                (getTaskWithId(taskId) as? Success)?.let { it ->
-                    activateTask(it.data)
-                }
-            }
-        }
+      wrapEspressoIdlingResource {
+          withContext(ioDispatcher) {
+              (getTaskWithId(taskId) as? Success)?.let { it ->
+                  activateTask(it.data)
+              }
+          }
+      }
     }
 
     override suspend fun clearCompletedTasks() {
-        wrapEspressoIdlingResource {
-            coroutineScope {
-                launch { tasksRemoteDataSource.clearCompletedTasks() }
-                launch { tasksLocalDataSource.clearCompletedTasks() }
-            }
-        }
+      wrapEspressoIdlingResource {
+          coroutineScope {
+              launch { tasksRemoteDataSource.clearCompletedTasks() }
+              launch { tasksLocalDataSource.clearCompletedTasks() }
+          }
+      }
     }
 
     override suspend fun deleteAllTasks() {

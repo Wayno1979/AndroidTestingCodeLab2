@@ -34,11 +34,6 @@ import org.junit.Test
 @ExperimentalCoroutinesApi
 class DefaultTasksRepositoryTest {
 
-    // Set the main coroutines dispatcher for unit testing.
-    @ExperimentalCoroutinesApi
-    @get:Rule
-    var mainCoroutineRule = MainCoroutineRule()
-
     private val task1 = Task("Title1", "Description1")
     private val task2 = Task("Title2", "Description2")
     private val task3 = Task("Title3", "Description3")
@@ -50,6 +45,11 @@ class DefaultTasksRepositoryTest {
 
     // Class under test
     private lateinit var tasksRepository: DefaultTasksRepository
+
+    // Set the main coroutines dispatcher for unit testing.
+    @ExperimentalCoroutinesApi
+    @get:Rule
+    var mainCoroutineRule = MainCoroutineRule()
 
     @Before
     fun createRepository() {

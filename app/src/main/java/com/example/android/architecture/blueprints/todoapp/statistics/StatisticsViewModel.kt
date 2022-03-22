@@ -16,9 +16,7 @@
 
 package com.example.android.architecture.blueprints.todoapp.statistics
 
-import android.app.Application
 import androidx.lifecycle.*
-import com.example.android.architecture.blueprints.todoapp.TodoApplication
 import com.example.android.architecture.blueprints.todoapp.data.Result
 import com.example.android.architecture.blueprints.todoapp.data.Result.Error
 import com.example.android.architecture.blueprints.todoapp.data.Result.Success
@@ -29,7 +27,9 @@ import kotlinx.coroutines.launch
 /**
  * ViewModel for the statistics screen.
  */
-class StatisticsViewModel(private val tasksRepository: TasksRepository) : ViewModel() {
+class StatisticsViewModel(
+    private val tasksRepository: TasksRepository
+) : ViewModel() {
 
     private val tasks: LiveData<Result<List<Task>>> = tasksRepository.observeTasks()
     private val _dataLoading = MutableLiveData<Boolean>(false)
@@ -56,6 +56,7 @@ class StatisticsViewModel(private val tasksRepository: TasksRepository) : ViewMo
             }
     }
 }
+
 
 @Suppress("UNCHECKED_CAST")
 class StatisticsViewModelFactory (
